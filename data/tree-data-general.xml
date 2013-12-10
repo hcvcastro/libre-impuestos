@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<root>
+    <node icon="gtk-home" name="Menú General">
+      <node icon="avatar-default" name="Cambiar Usuario"/>
+      <node icon="info" name="Cambiar Contraseña"/>
+    </node>
+</root>

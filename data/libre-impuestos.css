@@ -1,0 +1,22 @@
+#libre-impuesto-header 
+{
+     background-image: url('images/header-background-image.bmp');
+     background-repeat: repeat-x;
+     color: white;
+     font-weight: bold;
+}
+
+#logo 
+{
+    background-image: url('images/libre-impuesto-nacional.bmp');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+
+
+#libre-impuesto-background
+{
+    background-image: url('images/libre-impuesto-background-image.bmp');
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}

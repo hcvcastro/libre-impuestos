@@ -1,0 +1,18 @@
+<ui>
+  <menubar name='main-menu'>
+      <menu action='file-menu'>
+          <menuitem action='quit'/>
+      </menu>
+      <menu action='layout-menu'>
+        <menuitem action='show-headerbar'/>
+        <menuitem action='show-statusbar'/>
+        <menuitem action='show-sidebar'/>
+      </menu>
+      <menu action='window-menu'/>
+    <menu action='help-menu'>
+      <menuitem action='contents'/>
+      <separator/>
+      <menuitem action='about'/>
+    </menu>
+  </menubar>
+</ui>

@@ -1,0 +1,102 @@
+\input texinfo
+@setfilename libre-impuestos.info
+@include version.texi
+@settitle Libre Impuestos @value{VERSION}
+
+@c Combine indices.
+@syncodeindex ky cp
+@syncodeindex pg cp
+@syncodeindex tp cp
+@defcodeindex op
+@syncodeindex op cp
+@syncodeindex vr cp
+
+@copying
+Este manual es para la aplicacion escritorio @command{libre-impuestos}.
+
+Copyright @copyright{} 2013 Software Libre Bolivia, Inc.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+Texts.  A copy of the license is included in the section entitled
+``GNU Free Documentation License''.
+@end quotation
+@end copying
+
+@dircategory Creación de Formularios
+@direntry
+* libre-impuestos:      Creación de Formularios.
+@end direntry
+
+@titlepage
+@title Creación de Formularios
+@subtitle version @value{VERSION}, @value{UPDATED}
+@author Henry Castro <hcvcastro@gmail.com>
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@top libre-impuestos
+
+     @command{libre-impuestos} es una aplicación escritorio
+ para llenado de formularios de Impuestos Nacionales
+
+@insertcopying
+@end ifnottex
+
+@menu
+* Introducción::        Introducción.
+* Ejecutar::            Ejecutar la aplicación escritorio libre-impuestos.
+* Formularios::         Formularios de Impuestos Nacionales.
+* Uso::                 Ejemplos.
+* Reporting Bugs::      Reporting Bugs.
+* Copying::             Terminos de licencia del manual.
+* Indice::              Indice
+@end menu
+
+@node Introducción
+@chapter Introducción
+
+@command{libre-impuestos} Es una aplicacion escritorio, para llenado de formularios de Impuestos Nacionales.
+
+@command{libre-impuestos} escrito por Henry Castro @email{hcvcastro@@gmail.com}, espera la colaboración de toda la comunidad de Software Libre en Bolivia, para concluir el producto.
+
+Mas .. 
+
+@node Ejecutar
+@chapter Ejecutar @command{libre-impuestos}
+
+Para ejecutar libre-impuestos, en consola, escribir: libre-impuestos.
+
+@node Formularios
+@chapter Formularios
+
+FIX ME.
+
+@node Uso
+@chapter Uso
+
+FIX ME.
+
+@node Reporting Bugs
+@chapter Reporting Bugs
+
+Enviar reporte de Bugs a Henry Castro @email{hcvcastro@@gmail.com}
+
+@node Copying
+@chapter Copying
+
+@insertcopying
+
+@node Indice
+@chapter Indice
+
+@bye

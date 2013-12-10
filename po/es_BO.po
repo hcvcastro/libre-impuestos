@@ -1,0 +1,181 @@
+# Spanish translations for libre-impuestos package
+# Traducciones al español para el paquete libre-impuestos.
+# Copyright (C) 2013 Free Software Foundation, Inc.
+# This file is distributed under the same license as the libre-impuestos package.
+# Henry Castro <hcvcastro@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libre-impuestos 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-09 22:51-0400\n"
+"PO-Revision-Date: 2013-11-04 14:49-0400\n"
+"Last-Translator: Henry Castro <hcvcastro@gmail.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es_BO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../po/../impuesto/main.c:86
+msgid "Software Libre Bolivia - Libre Impuestos"
+msgstr "Software Libre Bolivia - Libre Impuestos"
+
+#: ../../po/../impuesto/libre-impuesto.c:165
+msgid "Could not parse the contents\n"
+msgstr "No se puede parsear el contenido\n"
+
+#: ../../po/../impuesto/libre-impuesto.c:174
+msgid "Could not get root item\n"
+msgstr "No se puede encontrar el nodo root\n"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:261
+#: ../../po/../impuesto/libre-impuesto-window.c:381
+#: ../../po/../impuesto/libre-impuesto-window-private.c:54
+msgid "Libre Impuestos"
+msgstr "Libre Impuestos"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:278
+msgid "www.softwarelibre.org.bo"
+msgstr "www.softwarelibre.org.bo"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:404
+msgid "Generales"
+msgstr "Generales"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:405
+msgid "General Options"
+msgstr "Opciones Generales"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:419
+#: ../../po/../impuesto/libre-impuesto-window.c:440
+msgid "Electronic Forms"
+msgstr "Formularios Electrónicos"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:439
+msgid "Modulos"
+msgstr "Módulos"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:457
+#: ../../po/../impuesto/libre-impuesto-window.c:477
+#: ../../po/../impuesto/libre-impuesto-window.c:478
+msgid "Consultores"
+msgstr "Consultores"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:689
+msgid "Libre Impuesto Version 0.0.1"
+msgstr "Libre Impuesto Version 0.0.1"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:748
+msgid "The Libre Impuesto singleton"
+msgstr "La clase de solo una instancia Libre Impuesto"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:760
+msgid "Initial window geometry string"
+msgstr "La dimension de la ventana"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:772
+msgid "Whether the libre impuesto window's header bar is visible"
+msgstr "Visibilidad de la sección de cabecera"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:784
+msgid "Whether the libre impuesto window's side bar is visible"
+msgstr "Visibilidad de la sección herramientas"
+
+#: ../../po/../impuesto/libre-impuesto-window.c:795
+#, fuzzy
+msgid "Whether the libre impuesto window's status bar is visible"
+msgstr "Visibilidad de la sección estado"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:67
+#, c-format
+msgid "The function is not implemente yet. Help?"
+msgstr "La función no esta implementado todavia. Ayuda?"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:91
+msgid "translator-credits"
+msgstr ""
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:100
+msgid "Desktop application for filling forms Impuestos Nacionales Bolivia"
+msgstr ""
+"Aplicación escritorio para llenar los formularios de Impuestos Nacionales de "
+"Bolivia"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:102
+msgid "Libre Impuesto Website"
+msgstr ""
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:134
+msgid "Show information about Evolution"
+msgstr "Muestra información acerca de Libre Impuestos"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:139
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:153
+msgid "_Close Window"
+msgstr "_Cerrar Ventana"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:141
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:148
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:155
+msgid "Close this window"
+msgstr "Cerrar esta ventana"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:160
+msgid "_Contents"
+msgstr "_Contenidos"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:162
+msgid "Open the Evolution User Guide"
+msgstr "Abre la Guia de Usuario de Libre Impuestos"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:169
+msgid "Exit the program"
+msgstr "Salir del programa"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:177
+msgid "_File"
+msgstr "_Archivo"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:184
+msgid "Lay_out"
+msgstr "V_er"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:191
+msgid "_Window"
+msgstr "_Ventana"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:198
+msgid "_Help"
+msgstr "Ay_uda"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:208
+msgid "Show Side _Bar"
+msgstr "Mostrar sección Herramientas"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:210
+msgid "Show the side bar"
+msgstr "Mostrar sección Herramientas"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:216
+msgid "Show _Header Bar"
+msgstr "Mostrar sección Cabecera"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:218
+msgid "Show the header bar"
+msgstr "Mostrar sección Cabecera"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:224
+msgid "Show _Status Bar"
+msgstr "Mostrar sección Estado"
+
+#: ../../po/../impuesto/libre-impuesto-window-actions.c:226
+msgid "Show the status bar"
+msgstr "Mostrar sección Estado"
+
+#~ msgid "This is snake\n"
+#~ msgstr "Este es liquid\n"
+
+#~ msgid "This is snakei\n"
+#~ msgstr "Este es liquidi\n"

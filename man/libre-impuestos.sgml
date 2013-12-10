@@ -1,0 +1,43 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V4.1//EN">
+<book id="libre-impuestos">
+  <bookinfo>
+    <title>libre-impuestos</title>
+    <copyright>
+      <year>2013</year>
+      <holder>Henry Castro</holder>
+      <holder>Henry Castro</holder>
+    </copyright>
+    <author>
+      <firstname>Henry</firstname>
+      <surname>Castro</surname>
+    </author>
+  </bookinfo>
+
+  <chapter>
+    <title>Introdución</title>
+    <para>libre-impuestos es un programa flexible para llenar los formularios de Impuestos Nacionales.</para>
+  </chapter>
+
+  <chapter>
+    <title>Usando libre-impuestos</title>
+    <section>
+      <title>
+	Ejemplo
+      </title>
+      
+      <para>
+	FIX ME!
+      </para>
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>Preguntas Frecuentes</title>
+    <para> Preguntas frecuentes </para>
+  </chapter>
+
+  <appendix>
+    <title>Otros Recursos</title>
+    <para>Mas información pronto ... <para>
+  </appendix>
+</book>

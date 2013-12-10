@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<root>
+    <node icon="gtk-home" name="Formulario Electrónicos">
+      <node icon="folder" name="Formulario 110">
+	<node icon="gtk-file" name="F110 Dependientes"/>
+	<node icon="gtk-file" name="F110 Independientes"/>
+      </node>
+      <node icon="folder" name="Boletas">
+	<node icon="gtk-file" name="BP-1000"/>
+	<node icon="gtk-file" name="BP-1010"/>
+	<node icon="gtk-file" name="BP-1200"/>
+	<node icon="gtk-file" name="BP-2000"/>
+	<node icon="gtk-file" name="BP-2099"/>
+	<node icon="gtk-file" name="BP-2570"/>
+	<node icon="gtk-file" name="BP-3000"/>
+	<node icon="gtk-file" name="BP-3050"/>
+	<node icon="gtk-file" name="BP-9050"/>
+      </node>
+      <node icon="folder" name="ICM">
+	<node icon="gtk-file" name="F597"/>
+	<node icon="gtk-file" name="F599"/>
+      </node>
+      <node icon="folder" name="IT">
+	<node icon="gtk-file" name="F400"/>
+	<node icon="gtk-file" name="F410"/>
+	<node icon="gtk-file" name="F430"/>
+      </node>
+      <node icon="folder" name="ITF">
+	<node icon="gtk-file" name="F165"/>
+	<node icon="gtk-file" name="F166"/>
+	<node icon="gtk-file" name="F168"/>
+      </node>
+      <node icon="folder" name="IUE">
+	<node icon="gtk-file" name="F500"/>
+	<node icon="gtk-file" name="F510"/>
+	<node icon="gtk-file" name="F520"/>
+	<node icon="gtk-file" name="F530"/>
+	<node icon="gtk-file" name="F541"/>
+	<node icon="gtk-file" name="F550"/>
+	<node icon="gtk-file" name="F560"/>
+	<node icon="gtk-file" name="F570"/>
+	<node icon="gtk-file" name="F580"/>
+	<node icon="gtk-file" name="F590"/>
+	<node icon="gtk-file" name="F591"/>
+	<node icon="gtk-file" name="F593"/>
+	<node icon="gtk-file" name="F594"/>
+	<node icon="gtk-file" name="F595"/>
+      </node>
+      <node icon="folder" name="IVA">
+	<node icon="gtk-file" name="F200"/>	
+      </node>
+      <node icon="folder" name="RC-IVA">
+	<node icon="gtk-file" name="F604"/>	
+	<node icon="gtk-file" name="F608"/>	
+	<node icon="gtk-file" name="F610"/>	
+      </node>
+      <node icon="folder" name="Envío Formulario">
+	<node icon="gtk-file" name="Envío Formulario"/>	
+      </node>
+    </node>
+</root>

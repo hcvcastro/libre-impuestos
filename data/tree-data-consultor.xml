@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<root>
+    <node icon="gtk-home" name="Datos Consultor">
+      <node icon="folder" name="Llenado F110"/>
+    </node>
+</root>

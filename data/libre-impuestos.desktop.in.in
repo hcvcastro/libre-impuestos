@@ -1,0 +1,17 @@
+[Desktop Entry]
+_Name=Libre Impuestos
+_GenericName=Software Libre Bolivia
+_X-GNOME-FullName=Libre Impuestos Bolivia
+_Comment=Aplicación para llenar formularios de Impuestos Nacionales Bolivia
+Exec=libre-impuestos %U
+Icon=libre-impuestos
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
+StartupNotify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=Libre Impuestos
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=@BASE_VERSION@.x
+X-GNOME-Bugzilla-OtherBinaries=
+MimeType=
