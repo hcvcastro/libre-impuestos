@@ -1,7 +1,6 @@
-This is
-/home/hcastro/projects/libre-impuestos/man/libre-impuestos.info,
-produced by makeinfo version 4.13 from
-/home/hcastro/projects/libre-impuestos/man/libre-impuestos.texi.
+This is ../../libre-impuestos/man/libre-impuestos.info, produced by
+makeinfo version 4.13 from
+../../libre-impuestos/man/libre-impuestos.texi.
 
 Este manual es para la aplicacion escritorio `libre-impuestos'.
 
@@ -122,13 +121,13 @@ File: libre-impuestos.info,  Node: Indice,  Prev: Copying,  Up: Top
 
 
 Tag Table:
-Node: Top838
-Node: Introducción1928
-Node: Ejecutar2337
-Node: Formularios2566
-Node: Uso2693
-Node: Reporting Bugs2810
-Node: Copying2997
-Node: Indice3639
+Node: Top804
+Node: Introducción1894
+Node: Ejecutar2303
+Node: Formularios2532
+Node: Uso2659
+Node: Reporting Bugs2776
+Node: Copying2963
+Node: Indice3605
 
 End Tag Table

@@ -22,7 +22,10 @@ noinst_LTLIBRARIES = libimpuesto.la
 
 include_FILES =				\
 	libre-impuesto.h		\
-	libre-impuesto-window.h		
+	libre-impuesto-window.h		\
+	libre-impuesto-common.h		\
+	libre-impuesto-window-private.h \
+	libre-impuesto-window-actions.h
 
 
 libimpuesto_la_CPPFLAGS =						\

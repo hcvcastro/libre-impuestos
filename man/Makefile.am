@@ -16,7 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-info_TEXINFOS = libre-impuestos.texi
+# info_TEXINFOS = libre-impuestos.texi 
 man_MANS = libre-impuestos.1
+
+EXTRA_DIST = libre-impuestos.1 version.texi
 
 CLEANFILES = $(INFO_DEPS)

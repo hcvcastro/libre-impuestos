@@ -33,8 +33,8 @@ Texts.  A copy of the license is included in the section entitled
 
 @titlepage
 @title Creación de Formularios
-@subtitle version @value{VERSION}, @value{UPDATED}
-@author Henry Castro <hcvcastro@gmail.com>
+@subtitle version @value{VERSION} @c, @value{UPDATED}
+Henry Castro <hcvcastro@gmail.com>
 @page
 @vskip 0pt plus 1filll
 @insertcopying
