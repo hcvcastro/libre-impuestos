@@ -20,7 +20,10 @@
 noinst_LTLIBRARIES = libutil.la
 
 include_FILES = 				\
-		util.h					
+		util.h				\
+		libre-impuesto-string.h		\
+		profile.h			\
+		file-helpers.h
 
 libutil_la_CPPFLAGS =							\
 	$(AM_CPPFLAGS)							\
@@ -46,7 +49,9 @@ libutil_la_CPPFLAGS =							\
 libutil_la_SOURCES =				\
 	$(include_FILES)			\
 	util.c					\
-	$(PLATFORM_SOURCES)
+	libre-impuesto-string.c			\
+	file-helpers.c				
+
 
 libutil_la_LDFLAGS = $(NO_UNDEFINED)
 

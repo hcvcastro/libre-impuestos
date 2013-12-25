@@ -25,10 +25,14 @@
 #endif
 
 #include "libre-impuesto.h"
+#include "gtkstack.h"
 #include "libre-impuesto-window.h"
+#include "impuesto-command.h"
 
 #include <glib/gi18n.h>
 #include "util/util.h"
+
+#define APPLICATION_ID "www.softwarelibre.bo.libre-impuestos"
 
 #define LIBRE_IMPUESTO_GET_PRIVATE(obj) \
 	(G_TYPE_INSTANCE_GET_PRIVATE \
@@ -38,6 +42,8 @@
 
 struct _LibreImpuestoPrivate {
   
+  LibreImpuestoCommand * command;
+
   GtkTreeStore *tree_data_general;
   GtkTreeStore *tree_data_consultor;
   GtkTreeStore *tree_data_formulario;
@@ -46,6 +52,8 @@ struct _LibreImpuestoPrivate {
   GtkCssProvider *css_provider;
 
   gchar *geometry;
+
+  
 };
 
 enum {
@@ -86,6 +94,22 @@ G_DEFINE_TYPE_WITH_CODE (
 			 )
 
 
+
+static void
+libre_impuesto_queue_commands (LibreImpuesto *impuesto)
+{
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = impuesto->priv->command;
+  g_assert (impuesto_command != NULL);
+
+  libre_impuesto_queue_command (impuesto_command,
+                                IMPUESTO_COMMAND_MAIN_WINDOW,
+				NULL,
+                                TRUE);
+}
+
+
 static GQuark
 libre_impuesto_error_quark (void)
 {
@@ -103,7 +127,7 @@ libre_impuesto_load_node (GtkTreeStore *tree_store,
 {
   GdkPixbuf *pixbuf;
   GtkTreeIter tree_node;
-  xmlChar *node_icon, *node_name;
+  xmlChar *node_icon, *node_name, *node_form;
   gboolean ret_val = TRUE;
 
   while(node) {
@@ -112,6 +136,7 @@ libre_impuesto_load_node (GtkTreeStore *tree_store,
        // get the saved properties 
        node_icon = xmlGetProp(node, (guchar*)"icon");
        node_name = xmlGetProp(node, (guchar*)"name");
+       node_form = xmlGetProp(node, (guchar*)"form");
 
        pixbuf = gtk_icon_theme_load_icon (theme, (gchar *)node_icon, 16, 0, NULL);
 
@@ -126,6 +151,7 @@ libre_impuesto_load_node (GtkTreeStore *tree_store,
 			    &tree_node, 
 			    0, pixbuf, 
 			    1, node_name, 
+			    2, node_form,
 			    -1);
 
        // free the data 
@@ -232,20 +258,20 @@ gboolean
 libre_impuesto_quit (LibreImpuesto *impuesto,
 		     LibreImpuestoQuitReason reason)
 {
-  GtkApplication *application;
-  GList *list;
+  //GtkApplication *application;
+  //GList *list;
 
   g_return_val_if_fail (IS_LIBRE_IMPUESTO (impuesto), FALSE);
 
-  application = GTK_APPLICATION (impuesto);
+  //application = GTK_APPLICATION (impuesto);
 
   /* Destroy all watched windows.  Note, we iterate over a -copy-
    * of the watched windows list because the act of destroying a
    * watched window will modify the watched windows list, which
    * would derail the iteration. */
-  list = g_list_copy (gtk_application_get_windows (application));
+  /*list = g_list_copy (gtk_application_get_windows (application));
   g_list_foreach (list, (GFunc) gtk_widget_destroy, NULL);
-  g_list_free (list);
+  g_list_free (list);*/
 
   if (gtk_main_level () > 0)
     gtk_main_quit ();
@@ -345,6 +371,15 @@ libre_impuesto_get_tree_data_consultor (LibreImpuesto *impuesto)
   g_return_val_if_fail (impuesto->priv->tree_data_consultor, NULL);
 
   return impuesto->priv->tree_data_consultor;
+}
+
+LibreImpuestoCommand *
+libre_impuesto_get_command(LibreImpuesto *impuesto)
+{
+  g_return_val_if_fail (IS_LIBRE_IMPUESTO (impuesto), NULL);
+  g_return_val_if_fail (impuesto->priv->command, NULL);
+
+  return impuesto->priv->command;
 }
 
 
@@ -462,7 +497,15 @@ libre_impuesto_finalize (GObject *object)
 
   priv = LIBRE_IMPUESTO_GET_PRIVATE (object);
 
-  g_free (priv->geometry);
+  if (priv->geometry != NULL) {
+    g_free (priv->geometry);
+    priv->geometry = NULL;
+  }
+
+  if (priv->command != NULL ) {
+    g_object_unref (priv->command);
+    priv->command = NULL;
+  }
 
   /* Chain up to parent's finalize() method. */
   G_OBJECT_CLASS (LIBRE_IMPUESTO_PARENT_CLASS)->finalize (object);
@@ -489,6 +532,8 @@ libre_impuesto_on_startup (GApplication *application)
 {
   /* Chain up to parent's startup() method. */
   G_APPLICATION_CLASS (LIBRE_IMPUESTO_PARENT_CLASS)->startup (application);
+
+  libre_impuesto_queue_commands (LIBRE_IMPUESTO (application));
 }
 
 /* The activate signal is emitted on the primary instance when an
@@ -512,9 +557,6 @@ libre_impuesto_on_activate (GApplication *application)
 
     list = g_list_next (list);
   }
-
-  /* No libre impuesto window found, so create one. */
-  libre_impuesto_create_main_window (LIBRE_IMPUESTO (application));
 }
 
 
@@ -607,6 +649,7 @@ static void
 libre_impuesto_init (LibreImpuesto *impuesto)
 {
   impuesto->priv = LIBRE_IMPUESTO_GET_PRIVATE (impuesto);
+  impuesto->priv->command = g_object_new (LIBRE_IMPUESTO_TYPE_COMMAND, NULL);
 }
 
 
@@ -671,8 +714,9 @@ impuesto_initable_init (GInitable *initable,
   //We load the data tree
   filename = g_build_filename (LIBRE_IMPUESTO_XML, 
 			       "tree-data-general.xml", NULL);
-
-  priv->tree_data_general = gtk_tree_store_new (2, GDK_TYPE_PIXBUF, 
+ 
+  priv->tree_data_general = gtk_tree_store_new (3, GDK_TYPE_PIXBUF, 
+						G_TYPE_STRING,
 						G_TYPE_STRING);
   ret_val = libre_impuesto_load_from_path(priv->tree_data_general,
 					  filename, error);
@@ -683,7 +727,8 @@ impuesto_initable_init (GInitable *initable,
   filename = g_build_filename (LIBRE_IMPUESTO_XML, 
 			       "tree-data-formulario.xml", NULL);
 
-  priv->tree_data_formulario = gtk_tree_store_new (2, GDK_TYPE_PIXBUF, 
+  priv->tree_data_formulario = gtk_tree_store_new (3, GDK_TYPE_PIXBUF, 
+						   G_TYPE_STRING,
 						   G_TYPE_STRING);
   ret_val = libre_impuesto_load_from_path(priv->tree_data_formulario,
 					  filename, error);
@@ -695,7 +740,8 @@ impuesto_initable_init (GInitable *initable,
   filename = g_build_filename (LIBRE_IMPUESTO_XML, 
 			       "tree-data-consultor.xml", NULL);
 
-  priv->tree_data_consultor = gtk_tree_store_new (2, GDK_TYPE_PIXBUF, 
+  priv->tree_data_consultor = gtk_tree_store_new (3, GDK_TYPE_PIXBUF, 
+						  G_TYPE_STRING,
 						  G_TYPE_STRING);
   ret_val = libre_impuesto_load_from_path(priv->tree_data_consultor, 
 					  filename, error);
@@ -730,5 +776,25 @@ static void
 libre_impuesto_initable_init (GInitableIface *interface)
 {
   interface->init = impuesto_initable_init;
+}
+
+
+/* create default libre impuesto instance */
+LibreImpuesto * 
+libre_impuesto_create_instance(void)
+{
+  LibreImpuesto * impuesto;
+  GError *error = NULL;
+
+  impuesto = g_initable_new (
+			  TYPE_LIBRE_IMPUESTO, NULL, &error,
+			  "application-id", APPLICATION_ID,
+			  NULL);
+
+  /* Failure to register is fatal. */
+  if (error != NULL)
+    g_error ("%s", error->message);
+
+  return impuesto;
 }
 

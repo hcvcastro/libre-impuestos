@@ -113,6 +113,11 @@ libre_impuesto_window_set_statusbar_visible (LibreImpuestoWindow *impuesto_windo
 GtkWidget *
 libre_impuesto_window_new (LibreImpuesto *impuesto,  const gchar *geometry);
 
+GtkNotebook *
+libre_impuesto_window_get_notebook(LibreImpuestoWindow *impuesto_window);
+
+GtkStack *
+libre_impuesto_window_get_stack(LibreImpuestoWindow *impuesto_window);
 
 G_END_DECLS
 

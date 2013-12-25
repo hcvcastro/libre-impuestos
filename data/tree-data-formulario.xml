@@ -2,8 +2,8 @@
 <root>
     <node icon="gtk-home" name="Formulario Electrónicos">
       <node icon="folder" name="Formulario 110">
-	<node icon="gtk-file" name="F110 Dependientes"/>
-	<node icon="gtk-file" name="F110 Independientes"/>
+	<node icon="gtk-file" name="F110 Dependientes" form="F110-dependientes.form"/>
+	<node icon="gtk-file" name="F110 Independientes" form="F110-independientes.form"/>
       </node>
       <node icon="folder" name="Boletas">
 	<node icon="gtk-file" name="BP-1000"/>

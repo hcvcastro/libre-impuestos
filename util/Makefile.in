@@ -87,7 +87,8 @@ LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libutil_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__objects_1 =
-am_libutil_la_OBJECTS = $(am__objects_1) libutil_la-util.lo
+am_libutil_la_OBJECTS = $(am__objects_1) libutil_la-util.lo \
+	libutil_la-libre-impuesto-string.lo libutil_la-file-helpers.lo
 libutil_la_OBJECTS = $(am_libutil_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -187,6 +188,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -232,6 +234,7 @@ ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
 am__untar = @am__untar@
+baseuridir = @baseuridir@
 bindir = @bindir@
 build = @build@
 build_alias = @build_alias@
@@ -286,7 +289,10 @@ top_srcdir = @top_srcdir@
 uidir = @uidir@
 noinst_LTLIBRARIES = libutil.la
 include_FILES = \
-		util.h					
+		util.h				\
+		libre-impuesto-string.h		\
+		profile.h			\
+		file-helpers.h
 
 libutil_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)							\
@@ -312,7 +318,8 @@ libutil_la_CPPFLAGS = \
 libutil_la_SOURCES = \
 	$(include_FILES)			\
 	util.c					\
-	$(PLATFORM_SOURCES)
+	libre-impuesto-string.c			\
+	file-helpers.c				
 
 libutil_la_LDFLAGS = $(NO_UNDEFINED)
 libutil_la_LIBADD = \
@@ -384,6 +391,12 @@ distclean-compile:
 
 libutil_la-util.lo: util.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libutil_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libutil_la-util.lo `test -f 'util.c' || echo '$(srcdir)/'`util.c
+
+libutil_la-libre-impuesto-string.lo: libre-impuesto-string.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libutil_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libutil_la-libre-impuesto-string.lo `test -f 'libre-impuesto-string.c' || echo '$(srcdir)/'`libre-impuesto-string.c
+
+libutil_la-file-helpers.lo: file-helpers.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libutil_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libutil_la-file-helpers.lo `test -f 'file-helpers.c' || echo '$(srcdir)/'`file-helpers.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

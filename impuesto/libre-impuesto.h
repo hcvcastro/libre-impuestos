@@ -84,6 +84,7 @@ GtkStyleProvider * libre_impuesto_get_provider (LibreImpuesto *impuesto);
 GtkTreeStore * libre_impuesto_get_tree_data_general (LibreImpuesto *impuesto);
 GtkTreeStore * libre_impuesto_get_tree_data_formulario (LibreImpuesto *impuesto);
 GtkTreeStore * libre_impuesto_get_tree_data_consultor (LibreImpuesto *impuesto);
+LibreImpuesto * libre_impuesto_create_instance();
 
 
 G_END_DECLS

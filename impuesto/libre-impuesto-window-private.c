@@ -23,12 +23,14 @@
 #include <config.h>
 #endif
 
+#include "gtkstack.h"
 #include "libre-impuesto-window-private.h"
 
 void
 libre_impuesto_window_private_dispose (LibreImpuestoWindow *impuesto_window)
 {
   LibreImpuestoWindowPrivate *priv = impuesto_window->priv;
+  
   DISPOSE (priv->ui_manager);
 }
 

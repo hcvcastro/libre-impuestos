@@ -128,13 +128,5 @@
 #define LIBRE_IMPUESTO_WINDOW_ACTION_GROUP_NEW_WINDOW(window) \
 	LIBRE_IMPUESTO_WINDOW_ACTION_GROUP ((window), "new-window")
 
-void 
-action_message_cb (GtkAction *action,
-		   LibreImpuestoWindow *libre_impuesto_window);
-
-void
-libre_impuesto_window_actions_init (LibreImpuestoWindow *impuesto_window);
-
-
 
 #endif /* LIBRE_IMPUESTO_WINDOW_ACTIONS_H */

@@ -91,7 +91,8 @@ am_libimpuesto_la_OBJECTS = $(am__objects_1) \
 	libimpuesto_la-libre-impuesto.lo \
 	libimpuesto_la-libre-impuesto-window.lo \
 	libimpuesto_la-libre-impuesto-window-actions.lo \
-	libimpuesto_la-libre-impuesto-window-private.lo
+	libimpuesto_la-libre-impuesto-window-private.lo \
+	libimpuesto_la-impuesto-command.lo
 libimpuesto_la_OBJECTS = $(am_libimpuesto_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -199,6 +200,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -244,6 +246,7 @@ ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
 am__untar = @am__untar@
+baseuridir = @baseuridir@
 bindir = @bindir@
 build = @build@
 build_alias = @build_alias@
@@ -304,7 +307,8 @@ include_FILES = \
 	libre-impuesto-window.h		\
 	libre-impuesto-common.h		\
 	libre-impuesto-window-private.h \
-	libre-impuesto-window-actions.h
+	libre-impuesto-window-actions.h \
+	impuesto-command.h
 
 libimpuesto_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)						\
@@ -322,6 +326,7 @@ libimpuesto_la_CPPFLAGS = \
 	-DLIBRE_IMPUESTO_HELPDIR=\""$(libreimpuestohelpdir)"\"	\
 	-DLIBRE_IMPUESTO_ICONDIR=\""$(icondir)"\"		\
 	-DLIBRE_IMPUESTO_UIDIR=\""$(uidir)"\"			\
+	-DLIBRE_IMPUESTO_BASE_URL=\""$(privdatadir)/form"\"	\
 	-DPREFIX=\""$(prefix)"\"				\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"			\
 	-DDATADIR=\""$(datadir)"\"				\
@@ -333,7 +338,8 @@ libimpuesto_la_SOURCES = \
 	libre-impuesto.c			\
 	libre-impuesto-window.c			\
 	libre-impuesto-window-actions.c		\
-	libre-impuesto-window-private.c		
+	libre-impuesto-window-private.c		\
+	impuesto-command.c
 
 libimpuesto_la_LDFLAGS = $(NO_UNDEFINED)
 libimpuesto_la_LIBADD = \
@@ -490,6 +496,9 @@ libimpuesto_la-libre-impuesto-window-actions.lo: libre-impuesto-window-actions.c
 
 libimpuesto_la-libre-impuesto-window-private.lo: libre-impuesto-window-private.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libimpuesto_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libimpuesto_la-libre-impuesto-window-private.lo `test -f 'libre-impuesto-window-private.c' || echo '$(srcdir)/'`libre-impuesto-window-private.c
+
+libimpuesto_la-impuesto-command.lo: impuesto-command.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libimpuesto_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libimpuesto_la-impuesto-command.lo `test -f 'impuesto-command.c' || echo '$(srcdir)/'`impuesto-command.c
 
 libre_impuestos-main.o: main.c
 	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libre_impuestos_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libre_impuestos-main.o `test -f 'main.c' || echo '$(srcdir)/'`main.c

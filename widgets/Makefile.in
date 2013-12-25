@@ -88,7 +88,11 @@ am__DEPENDENCIES_1 =
 libwidgets_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__objects_1 =
 am_libwidgets_la_OBJECTS = $(am__objects_1) libwidgets_la-gtkstack.lo \
-	libwidgets_la-gtkstackswitcher.lo
+	libwidgets_la-gtkstackswitcher.lo \
+	libwidgets_la-impuesto-notebook.lo \
+	libwidgets_la-libre-impuesto-embed.lo \
+	libwidgets_la-libre-impuesto-web-view.lo \
+	libwidgets_la-nautilus-floating-bar.lo
 libwidgets_la_OBJECTS = $(am_libwidgets_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -188,6 +192,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -233,6 +238,7 @@ ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
 am__untar = @am__untar@
+baseuridir = @baseuridir@
 bindir = @bindir@
 build = @build@
 build_alias = @build_alias@
@@ -292,7 +298,12 @@ include_FILES = \
 	gtkcsstypesprivate.h			\
 	gtkprivate.h				\
 	gtkstack.h				\
-	gtkstackswitcher.h				
+	gtkstackswitcher.h			\
+	impuesto-notebook.h			\
+	libre-impuesto-embed.h			\
+	libre-impuesto-web-view.h		\
+	libre-impuesto-embed-type-builtins.h	\
+	nautilus-floating-bar.h
 
 libwidgets_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)							\
@@ -314,12 +325,17 @@ libwidgets_la_CPPFLAGS = \
 	-DLIBRE_IMPUESTO_SYSCONFDIR=\""$(sysconfdir)"\"			\
 	-DLIBRE_IMPUESTO_TOOLSDIR=\""$(privlibexecdir)"\"		\
 	-DLIBRE_IMPUESTO_UIDIR=\""$(uidir)"\"				\
+	-DLIBRE_IMPUESTO_BASE_URL=\""$(baseuridir)"\"			\
 	$(GNOME_PLATFORM_CFLAGS)
 
 libwidgets_la_SOURCES = \
 	$(include_FILES)			\
 	gtkstack.c				\
-	gtkstackswitcher.c				
+	gtkstackswitcher.c			\
+	impuesto-notebook.c			\
+	libre-impuesto-embed.c			\
+	libre-impuesto-web-view.c		\
+	nautilus-floating-bar.c
 
 libwidgets_la_LDFLAGS = $(NO_UNDEFINED)
 libwidgets_la_LIBADD = \
@@ -396,6 +412,18 @@ libwidgets_la-gtkstack.lo: gtkstack.c
 
 libwidgets_la-gtkstackswitcher.lo: gtkstackswitcher.c
 	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libwidgets_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libwidgets_la-gtkstackswitcher.lo `test -f 'gtkstackswitcher.c' || echo '$(srcdir)/'`gtkstackswitcher.c
+
+libwidgets_la-impuesto-notebook.lo: impuesto-notebook.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libwidgets_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libwidgets_la-impuesto-notebook.lo `test -f 'impuesto-notebook.c' || echo '$(srcdir)/'`impuesto-notebook.c
+
+libwidgets_la-libre-impuesto-embed.lo: libre-impuesto-embed.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libwidgets_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libwidgets_la-libre-impuesto-embed.lo `test -f 'libre-impuesto-embed.c' || echo '$(srcdir)/'`libre-impuesto-embed.c
+
+libwidgets_la-libre-impuesto-web-view.lo: libre-impuesto-web-view.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libwidgets_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libwidgets_la-libre-impuesto-web-view.lo `test -f 'libre-impuesto-web-view.c' || echo '$(srcdir)/'`libre-impuesto-web-view.c
+
+libwidgets_la-nautilus-floating-bar.lo: nautilus-floating-bar.c
+	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libwidgets_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libwidgets_la-nautilus-floating-bar.lo `test -f 'nautilus-floating-bar.c' || echo '$(srcdir)/'`nautilus-floating-bar.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -28,6 +28,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 xmldir = $(privdatadir)/data
 cssdir = $(privdatadir)/css
 uidir = $(privdatadir)/ui
+htmldir = $(privdatadir)/form
 
 dist_ui_DATA =				\
 	libre-impuestos-menu.ui
@@ -40,6 +41,9 @@ dist_xml_DATA =				\
 	tree-data-formulario.xml	\
 	tree-data-general.xml
 
+dist_html_DATA =			\
+	F110-independientes.form	\
+	F110-dependientes.form
 
 CLEANFILES =					\
 	$(desktop_DATA)

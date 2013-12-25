@@ -20,5 +20,6 @@
 dist_images_DATA =					\
 		libre-impuesto-background-image.bmp	\
 		libre-impuesto-nacional.bmp		\
-		header-background-image.bmp
+		header-background-image.bmp		\
+		impuesto.bmp
 

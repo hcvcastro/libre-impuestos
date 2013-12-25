@@ -25,7 +25,8 @@ include_FILES =				\
 	libre-impuesto-window.h		\
 	libre-impuesto-common.h		\
 	libre-impuesto-window-private.h \
-	libre-impuesto-window-actions.h
+	libre-impuesto-window-actions.h \
+	impuesto-command.h
 
 
 libimpuesto_la_CPPFLAGS =						\
@@ -44,6 +45,7 @@ libimpuesto_la_CPPFLAGS =						\
 	-DLIBRE_IMPUESTO_HELPDIR=\""$(libreimpuestohelpdir)"\"	\
 	-DLIBRE_IMPUESTO_ICONDIR=\""$(icondir)"\"		\
 	-DLIBRE_IMPUESTO_UIDIR=\""$(uidir)"\"			\
+	-DLIBRE_IMPUESTO_BASE_URL=\""$(privdatadir)/form"\"	\
 	-DPREFIX=\""$(prefix)"\"				\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"			\
 	-DDATADIR=\""$(datadir)"\"				\
@@ -56,7 +58,8 @@ libimpuesto_la_SOURCES =			\
 	libre-impuesto.c			\
 	libre-impuesto-window.c			\
 	libre-impuesto-window-actions.c		\
-	libre-impuesto-window-private.c		
+	libre-impuesto-window-private.c		\
+	impuesto-command.c
 
 libimpuesto_la_LDFLAGS = $(NO_UNDEFINED)
 

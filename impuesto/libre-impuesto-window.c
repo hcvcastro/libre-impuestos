@@ -25,6 +25,8 @@
 
 #include "gtkstack.h"
 #include "gtkstackswitcher.h"
+#include "impuesto-notebook.h"
+#include "impuesto-command.h"
 
 #include <time.h>
 #include "libre-impuesto-window-private.h"
@@ -319,6 +321,8 @@ node_tree_selection_changed_cb ( LibreImpuestoWindow *libre_impuesto_window,
   GtkTreeModel *model;
   GtkTreeIter iter;
   GList *list;
+  gchar *form;
+  LibreImpuestoCommand *impuesto_command;
 
   list = gtk_tree_selection_get_selected_rows (selection, &model);
 
@@ -328,12 +332,53 @@ node_tree_selection_changed_cb ( LibreImpuestoWindow *libre_impuesto_window,
   gtk_tree_model_get_iter (model, &iter, list->data);
 
   if (!gtk_tree_model_iter_has_child (model, &iter)) {
-    action_message_cb (NULL, libre_impuesto_window);
+    gtk_tree_model_get (model, &iter, 2, &form, -1);
+    impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(libre_impuesto_window));    
+    libre_impuesto_queue_command (impuesto_command,
+				  IMPUESTO_COMMAND_OPEN_FORM,
+				  form,
+				  FALSE);
+    g_free (form);
   }
 
 exit:
   g_list_free (list);
 }
+
+static gboolean
+switch_page_cb (GtkNotebook *notebook,
+		GtkWidget *page,
+		gint page_num,
+		LibreImpuestoWindow *impuesto_window)
+{
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(impuesto_window));    
+  libre_impuesto_queue_command (impuesto_command,
+				IMPUESTO_COMMAND_SYNC_SELECTION,
+				NULL,
+				FALSE);
+  return TRUE;
+}
+
+
+
+static void
+notebook_page_close_request_cb (ImpuestoNotebook *notebook,
+				GtkWidget *embed,
+				LibreImpuestoWindow *impuesto_window)
+{
+  gtk_widget_destroy ( embed );
+  
+  // If that was the last tab, destroy the window. */
+  if (gtk_notebook_get_n_pages (impuesto_window->priv->notebook) > 0) {
+    gtk_stack_set_visible_child_name(libre_impuesto_window_get_stack(impuesto_window), "notebook");
+  }
+  else
+    gtk_stack_set_visible_child_name(libre_impuesto_window_get_stack(impuesto_window), "background");
+
+}
+
 
 
 
@@ -361,6 +406,7 @@ libre_impuesto_window_construct_sidebar (LibreImpuesto *impuesto,
   box_switcher = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
   switcher = gtk_stack_switcher_new ();
+  g_object_set_data(G_OBJECT(impuesto_window), "switcher", switcher);
   gtk_orientable_set_orientation (GTK_ORIENTABLE (switcher), 
 				  GTK_ORIENTATION_VERTICAL);
   gtk_box_pack_end (GTK_BOX (box_switcher), switcher, FALSE, FALSE, 0);
@@ -657,8 +703,11 @@ libre_impuesto_window_constructed (GObject *object)
   GtkBox *box;
   GtkPaned *paned;
   GtkWidget *widget;
+  GtkWidget *notebook;
+  GtkWidget *background;
   LibreImpuesto *impuesto;
   LibreImpuestoWindow *impuesto_window = LIBRE_IMPUESTO_WINDOW (object);
+  LibreImpuestoWindowPrivate *priv = impuesto_window->priv;
 
   impuesto = libre_impuesto_window_get_impuesto (impuesto_window);
   libre_impuesto_window_actions_init(impuesto_window);
@@ -682,12 +731,13 @@ libre_impuesto_window_constructed (GObject *object)
 
   paned = GTK_PANED (widget);
 
+
   widget = gtk_statusbar_new();
   g_object_bind_property ( impuesto_window, "statusbar-visible",
 			   widget, "visible",
 			   G_BINDING_SYNC_CREATE);
   gtk_statusbar_push (GTK_STATUSBAR (widget), 
-		      1,_("Libre Impuesto Version 0.0.1"));
+		      1, PACKAGE_STRING);
 
   gtk_box_pack_start (box, widget, FALSE, FALSE, 0);
 
@@ -698,16 +748,35 @@ libre_impuesto_window_constructed (GObject *object)
   if (widget != NULL)
     gtk_paned_pack1 (paned, widget, FALSE, FALSE);
 
-  widget = gtk_drawing_area_new ();
-  gtk_widget_set_name (widget, "libre-impuesto-background");
-  g_signal_connect (widget, "draw",
-		    G_CALLBACK (draw_area_cb), NULL);
+  background = gtk_drawing_area_new();
+  gtk_widget_set_name (background, "libre-impuesto-background");
+  g_signal_connect (background, "draw",
+  G_CALLBACK (draw_area_cb), NULL);
 
+  notebook = impuesto_notebook_new();
+  priv->notebook = GTK_NOTEBOOK (notebook);
+  g_object_set_data ( G_OBJECT(impuesto_window), "notebook", notebook);
+  g_signal_connect ( GTK_NOTEBOOK (notebook), "tab-close-request",
+		    G_CALLBACK (notebook_page_close_request_cb), impuesto_window);
+  g_signal_connect ( GTK_NOTEBOOK (notebook), "switch-page",
+		     G_CALLBACK (switch_page_cb), 
+		     impuesto_window);
+
+  widget = gtk_stack_new();
+  priv->stack = GTK_STACK (widget);
+  gtk_container_add_with_properties (GTK_CONTAINER (widget), background, 
+				     "name", "background",
+				     NULL);
+
+  gtk_container_add_with_properties (GTK_CONTAINER (widget), notebook, 
+				     "name", "notebook",
+				     NULL);
   if (widget != NULL)
     gtk_paned_pack2 (paned, widget, TRUE, FALSE);
 
   gtk_widget_show_all (GTK_WIDGET(box));
 
+  //gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), 0);
   gtk_application_add_window (GTK_APPLICATION (impuesto), 
 			      GTK_WINDOW(impuesto_window));
 
@@ -818,3 +887,16 @@ libre_impuesto_window_new (LibreImpuesto *impuesto,
 			NULL );
 }
 
+GtkNotebook *
+libre_impuesto_window_get_notebook(LibreImpuestoWindow *impuesto_window)
+{
+  g_return_val_if_fail (IS_LIBRE_IMPUESTO_WINDOW (impuesto_window), NULL);  
+  return GTK_NOTEBOOK(impuesto_window->priv->notebook);
+}
+
+GtkStack *
+libre_impuesto_window_get_stack(LibreImpuestoWindow *impuesto_window)
+{
+  g_return_val_if_fail (IS_LIBRE_IMPUESTO_WINDOW (impuesto_window), NULL);  
+  return GTK_STACK(impuesto_window->priv->stack);
+}

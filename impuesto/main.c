@@ -25,45 +25,7 @@
 
 #include "libre-impuesto.h"
 #include <glib/gi18n.h>
-
-#define APPLICATION_ID "www.softwarelibre.bo.libre-impuestos"
-
-static gchar *geometry = NULL;
-static gchar **remaining_args;
-
-/* Adds a function to be called whenever there are no higher priority events
-   pending to the default main loop */
-static gboolean idle_cb (const gchar * const * uris)
-{
-  LibreImpuesto *impuesto;
-
-  impuesto = libre_impuesto_get_default ();
-  libre_impuesto_create_main_window (impuesto);
-
-  return FALSE;
-}
-
-/* create default libre impuesto instance */
-static LibreImpuesto * create_default_libre_impuesto(void)
-{
-  LibreImpuesto * impuesto;
-  GApplicationFlags flags;
-  GError *error = NULL;
-
-  flags = G_APPLICATION_HANDLES_OPEN | G_APPLICATION_HANDLES_COMMAND_LINE;
-  impuesto = g_initable_new (
-			  TYPE_LIBRE_IMPUESTO, NULL, &error,
-			  "application-id", APPLICATION_ID,
-			  "flags", flags,
-			  "geometry", geometry,
-			  NULL);
-
-  /* Failure to register is fatal. */
-  if (error != NULL)
-    g_error ("%s", error->message);
-
-  return impuesto;
-}
+#include <locale.h>
 
 
 /* main function to run libre impuesto application */
@@ -106,9 +68,8 @@ gint main(int argc, char *argv[])
 
   gtk_window_set_default_icon_name ("libre-impuestos");
 
-  create_default_libre_impuesto();
-
-  g_idle_add((GSourceFunc) idle_cb, remaining_args);
+  if (!libre_impuesto_create_instance())
+    return 1;
 
   gtk_main();
 

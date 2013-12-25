@@ -25,7 +25,12 @@ include_FILES =		 			\
 	gtkcsstypesprivate.h			\
 	gtkprivate.h				\
 	gtkstack.h				\
-	gtkstackswitcher.h				
+	gtkstackswitcher.h			\
+	impuesto-notebook.h			\
+	libre-impuesto-embed.h			\
+	libre-impuesto-web-view.h		\
+	libre-impuesto-embed-type-builtins.h	\
+	nautilus-floating-bar.h
 
 libwidgets_la_CPPFLAGS =						\
 	$(AM_CPPFLAGS)							\
@@ -47,12 +52,17 @@ libwidgets_la_CPPFLAGS =						\
 	-DLIBRE_IMPUESTO_SYSCONFDIR=\""$(sysconfdir)"\"			\
 	-DLIBRE_IMPUESTO_TOOLSDIR=\""$(privlibexecdir)"\"		\
 	-DLIBRE_IMPUESTO_UIDIR=\""$(uidir)"\"				\
+	-DLIBRE_IMPUESTO_BASE_URL=\""$(baseuridir)"\"			\
 	$(GNOME_PLATFORM_CFLAGS)
 
 libwidgets_la_SOURCES =				\
 	$(include_FILES)			\
 	gtkstack.c				\
-	gtkstackswitcher.c				
+	gtkstackswitcher.c			\
+	impuesto-notebook.c			\
+	libre-impuesto-embed.c			\
+	libre-impuesto-web-view.c		\
+	nautilus-floating-bar.c
 
 libwidgets_la_LDFLAGS = $(NO_UNDEFINED)
 

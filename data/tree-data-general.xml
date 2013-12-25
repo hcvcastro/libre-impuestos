@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <root>
     <node icon="gtk-home" name="Menú General">
-      <node icon="avatar-default" name="Cambiar Usuario"/>
-      <node icon="info" name="Cambiar Contraseña"/>
+	<node icon="avatar-default" name="www.impuestos.gob.bo" form="http://www.impuestos.gob.bo"/>
+      <node icon="avatar-default" name="Cambiar Usuario" form="user.form"/>
+      <node icon="info" name="Cambiar Contraseña" form="password.form"/>
     </node>
 </root>

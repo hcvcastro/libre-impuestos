@@ -20,5 +20,9 @@ impuesto/libre-impuesto.c
 impuesto/libre-impuesto-window.c
 impuesto/libre-impuesto-window-actions.c
 impuesto/libre-impuesto-window-private.c
+util/file-helpers.c
+widgets/impuesto-notebook.c
+widgets/libre-impuesto-web-view.c
+
 
 

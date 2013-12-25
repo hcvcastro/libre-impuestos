@@ -186,6 +186,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -231,6 +232,7 @@ ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
 am__untar = @am__untar@
+baseuridir = @baseuridir@
 bindir = @bindir@
 build = @build@
 build_alias = @build_alias@
@@ -286,7 +288,8 @@ uidir = @uidir@
 dist_images_DATA = \
 		libre-impuesto-background-image.bmp	\
 		libre-impuesto-nacional.bmp		\
-		header-background-image.bmp
+		header-background-image.bmp		\
+		impuesto.bmp
 
 all: all-am
 

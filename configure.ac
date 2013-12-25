@@ -4,7 +4,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl libre-impuestos Versions
 m4_define([libre_impuestos_mayor_version], [0])
 m4_define([libre_impuestos_minor_version], [0])
-m4_define([libre_impuestos_micro_version], [1])
+m4_define([libre_impuestos_micro_version], [2])
 m4_define([libre_impuestos_version],
 	[libre_impuestos_mayor_version.libre_impuestos_minor_version.libre_impuestos_micro_version])
 m4_define([libre_impuestos_stable_version],
@@ -117,6 +117,9 @@ dnl ###########################################################################
 GLIB_REQUIRED=2.31
 GIO_REQUIRED=2.25.10
 GTK_REQUIRED=3.0
+LIBXSLT_REQUIRED=1.1.7
+WEBKIT_GTK_REQUIRED=1.7.92
+GNOME_KEYRING_REQUIRED=2.26.0
 
 dnl **********************************
 dnl Check for base dependencies early.
@@ -127,6 +130,9 @@ PKG_CHECK_MODULES([GNOME_PLATFORM], [
 	cairo-gobject
 	libxml-2.0 >= libxml_minimum_version
 	gmodule-export-2.0
+	libxslt >= $LIBXSLT_REQUIRED
+	webkitgtk-3.0 >= $WEBKIT_GTK_REQUIRED
+	gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED
 ])
 AC_SUBST(GNOME_PLATFORM_CFLAGS)
 AC_SUBST(GNOME_PLATFORM_LIBS)
@@ -137,6 +143,33 @@ GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AC_SUBST(GLIB_MKENUMS)
 
 AC_CHECK_LIB(m, log)
+
+
+# ****************
+# Distributor name
+# ****************
+
+AC_ARG_WITH([distributor-name],
+  AS_HELP_STRING([--with-distributor-name=name],[Set the distributor name]),
+  [LSB_DISTRIBUTOR="$withval"])
+
+if test -z "$LSB_DISTRIBUTOR"; then
+	AC_CHECK_PROGS([LSB_RELEASE], [lsb_release],)
+	if test -n "$LSB_RELEASE"; then
+		# Fallback on lsb_release if available
+		LSB_DISTRIBUTOR=$($LSB_RELEASE -i -s)
+	else
+		# Fallback on the product name
+		LSB_DISTRIBUTOR="Epiphany"
+	fi
+fi
+
+
+# ******************
+# Portability checks
+# ******************
+
+AC_CHECK_FUNCS([localtime_r memchr memmove memset mkdir mkdtemp realpath sqrt strchr strcspn strdup strerror strrchr strtol strtoul strstr])
 
 
 dnl *******************
@@ -173,7 +206,8 @@ AC_SUBST(icondir)
 imagesdir="$privdatadir/css/images"
 AC_SUBST(imagesdir)
 
-
+baseuridir="$privdatadir"
+AC_SUBST(baseuridir)
 
 dnl ###########################################################################
 dnl Internationalization

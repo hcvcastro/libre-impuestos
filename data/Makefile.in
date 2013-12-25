@@ -70,8 +70,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = data
-DIST_COMMON = $(dist_css_DATA) $(dist_ui_DATA) $(dist_xml_DATA) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(dist_css_DATA) $(dist_html_DATA) $(dist_ui_DATA) \
+	$(dist_xml_DATA) $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/libre-impuestos.desktop.in.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/as-compiler-flag.m4 \
@@ -135,9 +135,10 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(cssdir)" \
-	"$(DESTDIR)$(uidir)" "$(DESTDIR)$(xmldir)"
-DATA = $(desktop_DATA) $(dist_css_DATA) $(dist_ui_DATA) \
-	$(dist_xml_DATA)
+	"$(DESTDIR)$(htmldir)" "$(DESTDIR)$(uidir)" \
+	"$(DESTDIR)$(xmldir)"
+DATA = $(desktop_DATA) $(dist_css_DATA) $(dist_html_DATA) \
+	$(dist_ui_DATA) $(dist_xml_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -229,6 +230,7 @@ LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
+LSB_RELEASE = @LSB_RELEASE@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -274,6 +276,7 @@ ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
 am__untar = @am__untar@
+baseuridir = @baseuridir@
 bindir = @bindir@
 build = @build@
 build_alias = @build_alias@
@@ -292,7 +295,7 @@ host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
-htmldir = @htmldir@
+htmldir = $(privdatadir)/form
 icondir = @icondir@
 imagesdir = @imagesdir@
 includedir = @includedir@
@@ -342,6 +345,10 @@ dist_xml_DATA = \
 	tree-data-consultor.xml		\
 	tree-data-formulario.xml	\
 	tree-data-general.xml
+
+dist_html_DATA = \
+	F110-independientes.form	\
+	F110-dependientes.form
 
 CLEANFILES = \
 	$(desktop_DATA)
@@ -433,6 +440,27 @@ uninstall-dist_cssDATA:
 	@list='$(dist_css_DATA)'; test -n "$(cssdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(cssdir)'; $(am__uninstall_files_from_dir)
+install-dist_htmlDATA: $(dist_html_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(dist_html_DATA)'; test -n "$(htmldir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(htmldir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(htmldir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(htmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(htmldir)" || exit $$?; \
+	done
+
+uninstall-dist_htmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_html_DATA)'; test -n "$(htmldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(htmldir)'; $(am__uninstall_files_from_dir)
 install-dist_uiDATA: $(dist_ui_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(dist_ui_DATA)'; test -n "$(uidir)" || list=; \
@@ -671,7 +699,7 @@ check: check-recursive
 all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(cssdir)" "$(DESTDIR)$(uidir)" "$(DESTDIR)$(xmldir)"; do \
+	for dir in "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(cssdir)" "$(DESTDIR)$(htmldir)" "$(DESTDIR)$(uidir)" "$(DESTDIR)$(xmldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -727,7 +755,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-desktopDATA install-dist_cssDATA \
-	install-dist_uiDATA install-dist_xmlDATA
+	install-dist_htmlDATA install-dist_uiDATA install-dist_xmlDATA
 
 install-dvi: install-dvi-recursive
 
@@ -772,7 +800,8 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-desktopDATA uninstall-dist_cssDATA \
-	uninstall-dist_uiDATA uninstall-dist_xmlDATA
+	uninstall-dist_htmlDATA uninstall-dist_uiDATA \
+	uninstall-dist_xmlDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) ctags-recursive \
 	install-am install-strip tags-recursive
@@ -783,15 +812,16 @@ uninstall-am: uninstall-desktopDATA uninstall-dist_cssDATA \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
 	html-am info info-am install install-am install-data \
 	install-data-am install-desktopDATA install-dist_cssDATA \
-	install-dist_uiDATA install-dist_xmlDATA install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-generic mostlyclean-libtool pdf pdf-am \
-	ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-desktopDATA uninstall-dist_cssDATA \
+	install-dist_htmlDATA install-dist_uiDATA install-dist_xmlDATA \
+	install-dvi install-dvi-am install-exec install-exec-am \
+	install-html install-html-am install-info install-info-am \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-am uninstall-desktopDATA \
+	uninstall-dist_cssDATA uninstall-dist_htmlDATA \
 	uninstall-dist_uiDATA uninstall-dist_xmlDATA
 
 

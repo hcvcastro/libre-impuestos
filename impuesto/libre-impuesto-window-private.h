@@ -50,20 +50,22 @@ G_BEGIN_DECLS
 
 struct _LibreImpuestoWindowPrivate {
 
-	gpointer impuesto;  /* weak pointer */
+  gpointer impuesto;  /* weak pointer */
 
-	/*** UI Management ***/
+  /*** UI Management ***/
 
-	GtkUIManager *ui_manager;
+  GtkUIManager *ui_manager;
 
-	/* Miscellaneous */
-	GtkWidget *menubar_box;
+  /* Miscellaneous */
+  GtkWidget *menubar_box;
+  GtkNotebook *notebook;
+  GtkStack *stack;
+  
+  gchar *geometry;
 
-	gchar *geometry;
-
-	guint sidebar_visible  : 1;
-	guint headerbar_visible  : 1;
-	guint statusbar_visible  : 1;
+  guint sidebar_visible  : 1;
+  guint headerbar_visible  : 1;
+  guint statusbar_visible  : 1;
 };
 
 void		libre_impuesto_window_private_init	(LibreImpuestoWindow *impuseto_window);
@@ -71,6 +73,9 @@ void		libre_impuesto_window_private_constructed
 						(LibreImpuestoWindow *impuesto_window);
 void		libre_impuesto_window_private_dispose	(LibreImpuestoWindow *impuesto_window);
 void		libre_impuesto_window_private_finalize	(LibreImpuestoWindow *impuesto_window);
+
+void
+libre_impuesto_window_actions_init (LibreImpuestoWindow *impuesto_window);
 
 
 G_END_DECLS
