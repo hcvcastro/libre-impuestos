@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style type="text/css">
+
+html{
+	font: 12px/1.2 'Open Sans',sans-serif;
+}
+
+body{
+	border: 1px solid red;	
+}
+
+header{
+	border: 1pix solid red;
+	text-align: center;
+	height: 166px;
+}
+
+
+#logo-section{
+	display: inline-block;
+}
+
+#logo-title{
+	margin-top: 2px;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#logo-title p {
+	margin: 0px;
+}
+
+#libre-impuestos-section{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#libre-impuestos-section span{
+	border: 1px solid black;
+}
+
+
+#formulario-title {
+	display: inline-block;
+	/*display: table-cell;*/
+	width: 90px;
+	border: 1px solid black;
+	border-radius: 5px;
+	height: 133px;
+	/*display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;*/
+}
+
+#formulario-title h1 {
+	display: table-cell;
+	border: 1px solid red;
+	/*margin: 0px;*/
+	vertical-align: middle;
+	text-align: center;
+	width: 100%;
+}
+
+#libre-impuestos-section table{
+	display: inline-table;
+	/*vertical-align: top;*/	
+	border: 1px solid black;
+	text-align: left;
+	border-radius: 5px;
+	height: 130px;
+}
+
+
+</style>
+<title>Prueba</title>
+</head>
+<body><div id="formulario-title"><h1>FORM 110 VER.2</h1></div>
+<div id="libre-impuestos-section">
+				<table>
+					<tr>
+					<td>FUNCIONARIO DEPENDIENTE:</td>
+					<td><input class="selection-input" type="checkbox" name="option1"></td>					
+					</tr>
+					<tr>
+					<td>ANEXO AL FORM: 610 (RC-IVA):</td>
+					<td><input class="selection-input" type="checkbox" name="option2"></td>					
+					</tr>					
+					<tr>
+					<td>ANEXO AL FORM: 702 (STI):</td>
+					<td><input class="selection-input" type="checkbox" name="option3"></td>					
+					</tr>
+					<tr>
+					<td>ANEXO AL FORM: 510 (profesionales):</td>
+					<td><input class="selection-input" type="checkbox" name="option4"></td>					
+					</tr>
+					<tr>
+					<td>Márque solo una casilla</td>
+					</tr>					
+				</table>
+</div></body>
+	<!--<header>
+		<div id="logo-section">
+			<img src="images/impuesto.bmp"/>
+			<div id="logo-title">
+				<p>IMPUESTOS NACIONALES</p> 
+				<p>DD.JJ. PARA </p>
+				<p>PRESENTACION DE NOTAS FISCALES</p>
+			</div>
+		</div>
+		<div id="libre-impuestos-section">
+			<div>
+				<span>FORMULARIO LIBRE IMPUESTOS</span>
+				<span>IMPORTES EN BOLIVIANOS SIN CENTAVOS</span>
+			</div>
+			<div>
+				<div id="formulario-title"><h1>FORM 110 VER.2</h1></div>
+				<table>
+					<tr>
+					<td>FUNCIONARIO DEPENDIENTE:</td>
+					<td><input class="selection-input" type="checkbox" name="option1"></td>					
+					</tr>
+					<tr>
+					<td>ANEXO AL FORM: 610 (RC-IVA):</td>
+					<td><input class="selection-input" type="checkbox" name="option2"></td>					
+					</tr>					
+					<tr>
+					<td>ANEXO AL FORM: 702 (STI):</td>
+					<td><input class="selection-input" type="checkbox" name="option3"></td>					
+					</tr>
+					<tr>
+					<td>ANEXO AL FORM: 510 (profesionales):</td>
+					<td><input class="selection-input" type="checkbox" name="option4"></td>					
+					</tr>
+					<tr>
+					<td>Márque solo una casilla</td>
+					</tr>					
+				</table>
+				<table>
+					<tr>
+						<td>NUMERO DE ORDEN</td>
+					</tr>
+					<tr>
+						<td><input class="orden-input" type="text" /></td>
+					</tr>
+					<tr>
+						<td>NIT</td>					
+					</tr>
+					<tr>
+						<td><input class="orden-input" type="text" /></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</header> -->
+</html>
