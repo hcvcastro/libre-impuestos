@@ -4,7 +4,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl libre-impuestos Versions
 m4_define([libre_impuestos_mayor_version], [0])
 m4_define([libre_impuestos_minor_version], [0])
-m4_define([libre_impuestos_micro_version], [2])
+m4_define([libre_impuestos_micro_version], [3])
 m4_define([libre_impuestos_version],
 	[libre_impuestos_mayor_version.libre_impuestos_minor_version.libre_impuestos_micro_version])
 m4_define([libre_impuestos_stable_version],

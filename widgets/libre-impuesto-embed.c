@@ -28,6 +28,7 @@
 #include "libre-impuesto-web-view.h"
 #include "libre-impuesto-embed.h"
 #include "impuesto-notebook.h"
+#include "impuesto-command.h"
 #include "nautilus-floating-bar.h"
 #include <webkit/webkit.h>
 #include <glib/gi18n.h>
@@ -72,6 +73,93 @@ struct _LibreImpuestoEmbedPrivate
 };
 
 G_DEFINE_TYPE (LibreImpuestoEmbed, libre_impuesto_embed, GTK_TYPE_BOX)
+
+
+static void
+on_button_open_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
+{
+  LibreImpuestoWindow *libre_impuesto_window = g_object_get_data ( 
+                                                   G_OBJECT(embed), 
+                                                   "impuesto-window");
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(libre_impuesto_window));    
+  libre_impuesto_queue_command (impuesto_command,
+                                IMPUESTO_COMMAND_NOT_IMPLEMENTED,
+                                NULL,
+                                FALSE);
+}
+
+static void
+on_button_save_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
+{
+  LibreImpuestoWindow *libre_impuesto_window = g_object_get_data ( 
+                                                   G_OBJECT(embed), 
+                                                   "impuesto-window");
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(libre_impuesto_window));    
+  libre_impuesto_queue_command (impuesto_command,
+                                IMPUESTO_COMMAND_NOT_IMPLEMENTED,
+                                NULL,
+                                FALSE);
+}
+
+static void
+on_button_print_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
+{
+  WebKitWebView *web_view = embed->priv->web_view;
+  WebKitWebFrame *main_frame;
+  GtkPrintOperation *operation;
+  GtkPageSetup *page_setup;
+  GError *error = NULL;
+
+  main_frame = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (web_view));
+  operation = gtk_print_operation_new ();
+  gtk_print_operation_set_embed_page_setup (operation, TRUE);
+  page_setup = gtk_page_setup_new();
+  gtk_print_operation_set_default_page_setup (operation, page_setup);
+
+  webkit_web_frame_print_full (main_frame, operation, 
+                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG, &error);
+
+  if (error) {
+    g_error_free (error);
+  }
+
+  g_object_unref (page_setup);
+  g_object_unref (operation);
+}
+
+static void
+on_button_export_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
+{
+  LibreImpuestoWindow *libre_impuesto_window = g_object_get_data ( 
+                                                   G_OBJECT(embed), 
+                                                   "impuesto-window");
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(libre_impuesto_window));    
+  libre_impuesto_queue_command (impuesto_command,
+                                IMPUESTO_COMMAND_NOT_IMPLEMENTED,
+                                NULL,
+                                FALSE);
+}
+
+static void
+on_button_verify_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
+{
+  LibreImpuestoWindow *libre_impuesto_window = g_object_get_data ( 
+                                                   G_OBJECT(embed), 
+                                                   "impuesto-window");
+  LibreImpuestoCommand *impuesto_command;
+
+  impuesto_command = libre_impuesto_get_command(libre_impuesto_window_get_impuesto(libre_impuesto_window));    
+  libre_impuesto_queue_command (impuesto_command,
+                                IMPUESTO_COMMAND_NOT_IMPLEMENTED,
+                                NULL,
+                                FALSE);
+}
 
 
 static void
@@ -335,17 +423,56 @@ libre_impuesto_embed_constructed (GObject *object)
   WebKitWebView *web_view;
   WebKitWebWindowFeatures *window_features;
   GtkWidget *overlay;
+  GtkWidget *hbbox;
+  GtkWidget *vbox;
+  GtkWidget *button;
 
   // Skeleton
   //web_view = WEBKIT_WEB_VIEW (libre_impuesto_web_view_new ());
   web_view = WEBKIT_WEB_VIEW(webkit_web_view_new());
   scrolled_window = GTK_WIDGET (priv->scrolled_window);
+  
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   overlay = gtk_overlay_new ();
   gtk_widget_add_events (overlay, 
                          GDK_ENTER_NOTIFY_MASK |
                          GDK_LEAVE_NOTIFY_MASK);
   gtk_widget_set_name (overlay, "libre-impuesto-overlay");
   gtk_container_add (GTK_CONTAINER (overlay), scrolled_window);
+
+  hbbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX(hbbox), GTK_BUTTONBOX_CENTER);
+  button = gtk_button_new_with_label(_("Abrir"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (on_button_open_clicked), 
+                    embed);
+  gtk_container_add (GTK_CONTAINER (hbbox), button);
+  button = gtk_button_new_with_label(_("Guardar"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_SAVE, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (on_button_save_clicked), 
+                    embed);
+  gtk_container_add (GTK_CONTAINER (hbbox), button);
+  button = gtk_button_new_with_label(_("Imprimir"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_PRINT, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (on_button_print_clicked), 
+                    embed);
+  gtk_container_add (GTK_CONTAINER (hbbox), button);
+  button = gtk_button_new_with_label(_("Exportar"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_DND_MULTIPLE, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (on_button_export_clicked), 
+                    embed);
+  gtk_container_add (GTK_CONTAINER (hbbox), button);
+  button = gtk_button_new_with_label(_("Verificar"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_APPLY, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (on_button_verify_clicked), 
+                    embed);
+  gtk_container_add (GTK_CONTAINER (hbbox), button);
+
+
+  gtk_box_pack_end (GTK_BOX (vbox), hbbox, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (vbox), overlay, TRUE, TRUE, 0);
+  //gtk_container_add (GTK_CONTAINER (vbox), overlay);
+  //gtk_container_add (GTK_CONTAINER (vbox), hbbox);
 
   // statusbar is hidden by default 
   priv->floating_bar = nautilus_floating_bar_new (NULL, FALSE);
@@ -370,8 +497,10 @@ libre_impuesto_embed_constructed (GObject *object)
 
   gtk_container_add (GTK_CONTAINER (scrolled_window),
                      GTK_WIDGET (web_view));
-  gtk_paned_pack1 (GTK_PANED (paned), GTK_WIDGET (overlay),
-                   TRUE, FALSE);
+  /*gtk_paned_pack1 (GTK_PANED (paned), GTK_WIDGET (overlay),
+    TRUE, FALSE);*/
+
+  gtk_paned_pack1 (GTK_PANED (paned), GTK_WIDGET (vbox), TRUE, FALSE);
 
   gtk_box_pack_start (GTK_BOX (embed),
                       GTK_WIDGET (priv->top_widgets_vbox),
