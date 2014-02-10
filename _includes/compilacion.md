@@ -1,5 +1,5 @@
 
-### Herramientas para descargar código fuente libre-impuetos
+### Herramientas para descargar código fuente libre-impuestos
 
 Los siguientes métodos son aplicables:
 
