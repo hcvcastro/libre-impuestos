@@ -93,8 +93,8 @@ libre_impuestos_SOURCES = main.c
 
 libre_impuestos_LDADD =							\
 	libimpuesto.la							\
-	$(top_builddir)/util/libutil.la					\
 	$(top_builddir)/widgets/libwidgets.la				\
+	$(top_builddir)/util/libutil.la					\
 	$(GNOME_PLATFORM_LIBS)						\
 	$(EVOLUTIONICON)
 

@@ -21,7 +21,7 @@
 #define LIBRE_IMPUESTO_PROFILE_UTILS_H
 
 #include <glib.h>
-#include <gnome-keyring.h>
+/*#include <gnome-keyring.h>*/
 
 #define FORM_USERNAME_KEY "form_username"
 #define FORM_PASSWORD_KEY "form_password"
@@ -38,12 +38,12 @@ void _profile_utils_store_form_auth_data (const char *uri,
                                                const char *username,
                                                const char *password);
 
-void
+/*void
 _profile_utils_query_form_auth_data (const char *uri,
                                           const char *form_username,
                                           const char *form_password,
                                           GnomeKeyringOperationGetListCallback callback,
                                           gpointer data,
                                           GDestroyNotify destroy_data);
-
+*/
 #endif

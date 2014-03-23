@@ -106,8 +106,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_libre_impuestos_OBJECTS = libre_impuestos-main.$(OBJEXT)
 libre_impuestos_OBJECTS = $(am_libre_impuestos_OBJECTS)
 libre_impuestos_DEPENDENCIES = libimpuesto.la \
-	$(top_builddir)/util/libutil.la \
-	$(top_builddir)/widgets/libwidgets.la $(am__DEPENDENCIES_1)
+	$(top_builddir)/widgets/libwidgets.la \
+	$(top_builddir)/util/libutil.la $(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp =
 am__depfiles_maybe =
@@ -159,6 +159,11 @@ CC = @CC@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CPP_CPPFLAGS = @CPP_CPPFLAGS@
+CPP_WARNING_FLAGS = @CPP_WARNING_FLAGS@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
@@ -242,6 +247,7 @@ abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
+ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__leading_dot = @am__leading_dot@
 am__tar = @am__tar@
@@ -370,8 +376,8 @@ libre_impuestos_CPPFLAGS = \
 libre_impuestos_SOURCES = main.c
 libre_impuestos_LDADD = \
 	libimpuesto.la							\
-	$(top_builddir)/util/libutil.la					\
 	$(top_builddir)/widgets/libwidgets.la				\
+	$(top_builddir)/util/libutil.la					\
 	$(GNOME_PLATFORM_LIBS)						\
 	$(EVOLUTIONICON)
 

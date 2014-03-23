@@ -52,6 +52,7 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 AC_LANG(C)
 AC_ISC_POSIX
 AC_PROG_CC
+AC_PROG_CXX
 AM_PROG_CC_STDC
 AC_HEADER_STDC
 
@@ -83,6 +84,10 @@ AS_COMPILER_FLAGS(WARNING_FLAGS,
 	-Wredundant-decls -Wundef -Wwrite-strings")
 AC_SUBST(WARNING_FLAGS)
 
+AS_COMPILER_FLAGS(CPP_WARNING_FLAGS, "-Wall")
+AC_SUBST(CPP_WARNING_FLAGS)
+
+
 dnl Other useful compiler warnings for test builds only.
 dnl These may produce warnings we have no control over,
 dnl or false positives we don't always want to see.
@@ -97,7 +102,8 @@ dnl	-DE_CAL_DISABLE_DEPRECATED
 AM_CPPFLAGS="$WARNING_FLAGS -fno-strict-aliasing"
 AC_SUBST(AM_CPPFLAGS)
 
-
+CPP_CPPFLAGS="$CPP_WARNING_FLAGS"
+AC_SUBST(CPP_CPPFLAGS)
 
 AC_SUBST([BASE_VERSION], [base_version])
 AC_DEFINE_UNQUOTED(BASE_VERSION, ["$BASE_VERSION"], [Base version (Major.Minor)])
@@ -129,10 +135,8 @@ PKG_CHECK_MODULES([GNOME_PLATFORM], [
 	gio-2.0 >= glib_minimum_version
 	cairo-gobject
 	libxml-2.0 >= libxml_minimum_version
-	gmodule-export-2.0
 	libxslt >= $LIBXSLT_REQUIRED
-	webkitgtk-3.0 >= $WEBKIT_GTK_REQUIRED
-	gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED
+	libre-impuestos-webkitgtk-3.0 >= $WEBKIT_GTK_REQUIRED
 ])
 AC_SUBST(GNOME_PLATFORM_CFLAGS)
 AC_SUBST(GNOME_PLATFORM_LIBS)

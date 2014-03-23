@@ -26,7 +26,7 @@
 /*#include <gio/gio.h>*/
 #include <glib/gi18n.h>
 /*#include <glib/gstdio.h>*/
-#include <gnome-keyring.h>
+/*#include <gnome-keyring.h>*/
 /*#include <gtk/gtk.h>
 #include <libsoup/soup-gnome.h>
 #include <string.h>

@@ -52,7 +52,7 @@ libwidgets_la_CPPFLAGS =						\
 	-DLIBRE_IMPUESTO_SYSCONFDIR=\""$(sysconfdir)"\"			\
 	-DLIBRE_IMPUESTO_TOOLSDIR=\""$(privlibexecdir)"\"		\
 	-DLIBRE_IMPUESTO_UIDIR=\""$(uidir)"\"				\
-	-DLIBRE_IMPUESTO_BASE_URL=\""$(baseuridir)"\"			\
+	-DLIBRE_IMPUESTO_BASE_URL=\""$(privdatadir)/form/"\"		\
 	$(GNOME_PLATFORM_CFLAGS)
 
 libwidgets_la_SOURCES =				\

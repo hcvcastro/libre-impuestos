@@ -1,12 +1,6 @@
 /* -*- Mode: C; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2; -*- */
 /* vim: set sw=2 ts=2 sts=2 et: */
 /*
- *  Copyright © 2007 Xan Lopez
- *  Copyright © 2008 Jan Alonzo
- *  Copyright © 2009 Gustavo Noronha Silva
- *  Copyright © 2009 Igalia S.L.
- *  Copyright © 2009 Collabora Ltd.
- *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2, or (at your option)
@@ -105,23 +99,166 @@ on_button_save_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
                                 FALSE);
 }
 
+
+static void
+print_load_status_changed_cb (WebKitWebView *clone_web_view,
+                              GParamSpec *spec,
+                              GMainLoop *loop)
+{
+  WebKitLoadStatus status = webkit_web_view_get_load_status (clone_web_view);
+
+  if (status == WEBKIT_LOAD_FINISHED) {
+    g_main_loop_quit(loop);
+  }
+}
+
 static void
 on_button_print_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
 {
-  WebKitWebView *web_view = embed->priv->web_view;
-  WebKitWebFrame *main_frame;
-  GtkPrintOperation *operation;
-  GtkPageSetup *page_setup;
-  GError *error = NULL;
+  WebKitDOMDocument* document;
+  WebKitDOMNodeList* list;
+  WebKitDOMNode* parent = NULL;
+  WebKitDOMNode* header = NULL;
+  WebKitDOMNode* footer = NULL;
+  WebKitDOMNode* node = NULL;
+  WebKitDOMHTMLElement* body;
+  gulong length; //, iterator;
+  WebKitWebView* web_view = embed->priv->web_view;
+  WebKitWebFrame* main_frame, * frame_content, * frame_header, * frame_footer;
+  GtkWidget* content_web_view,* header_web_view,* footer_web_view;
+  GtkPrintOperation* operation;
+  GtkPageSetup* page_setup;
+  GError* error = NULL;
+  WebKitWebDataSource *data_source;
+  const GString *data;
+  GMainLoop* loop;
+  //gchar* text_header, * text_footer;
+  gchar *baseURL;
 
-  main_frame = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (web_view));
+
+  // Clone Document
+  main_frame = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW(web_view));
+  data_source = webkit_web_frame_get_data_source (main_frame);
+  data = webkit_web_data_source_get_data (data_source);
+
+  baseURL = webkit_web_view_get_uri(WEBKIT_WEB_VIEW(web_view));
+
+  content_web_view = webkit_web_view_new();
+  header_web_view = webkit_web_view_new();
+  footer_web_view = webkit_web_view_new();
+  g_object_ref_sink(footer_web_view);
+  g_object_ref_sink(header_web_view);
+  g_object_ref_sink(content_web_view);
+
+  loop = g_main_loop_new(NULL, FALSE);
+  g_object_connect (content_web_view,
+                    "signal::notify::load-status", 
+                    G_CALLBACK (print_load_status_changed_cb), loop, NULL);
+
+  g_object_connect (header_web_view,
+                    "signal::notify::load-status", 
+                    G_CALLBACK (print_load_status_changed_cb), loop, NULL);
+
+  g_object_connect (footer_web_view,
+                    "signal::notify::load-status", 
+                    G_CALLBACK (print_load_status_changed_cb), loop, NULL);
+
+  // Clone Document for Content
+  webkit_web_view_load_string(WEBKIT_WEB_VIEW (content_web_view), data->str, NULL, NULL, baseURL);
+
+  g_main_loop_run(loop);
+
+  // Clone Document for Header
+  webkit_web_view_load_string(WEBKIT_WEB_VIEW (header_web_view), data->str, NULL, NULL, baseURL);
+
+  g_main_loop_run(loop);
+
+  // Clone Document for footer
+  webkit_web_view_load_string(WEBKIT_WEB_VIEW (footer_web_view), data->str, NULL, NULL, baseURL);
+
+  g_main_loop_run(loop);
+
+  document = webkit_web_view_get_dom_document(WEBKIT_WEB_VIEW (content_web_view));
+
+  // Get Header Tag
+  list = webkit_dom_document_get_elements_by_tag_name(document, "header");
+  length = webkit_dom_node_list_get_length(list);  
+  if ( length > 0 ) 
+    header = webkit_dom_node_list_item(list, 0);
+  g_object_unref(list);
+
+  if ( header != NULL ) {
+    parent = webkit_dom_node_get_parent_node(header);
+    webkit_dom_node_remove_child(parent, header, NULL);
+  }
+
+  // Get Footer Tag
+  list = webkit_dom_document_get_elements_by_tag_name(document, "footer");
+  length = webkit_dom_node_list_get_length(list);  
+  if ( length > 0 ) 
+    footer = webkit_dom_node_list_item(list, length - 1);
+  g_object_unref(list);
+ 
+  if ( footer != NULL ) {
+    parent = webkit_dom_node_get_parent_node(footer);
+    webkit_dom_node_remove_child(parent, footer, NULL);
+  }
+
+  document = webkit_web_view_get_dom_document(WEBKIT_WEB_VIEW (header_web_view));
+  body = webkit_dom_document_get_body(document); 
+  list = webkit_dom_node_get_child_nodes(WEBKIT_DOM_NODE(body));
+  while (webkit_dom_node_list_get_length(list) > 0) {
+    node = webkit_dom_node_list_item(list, 0);
+    webkit_dom_node_remove_child(WEBKIT_DOM_NODE(body), node, NULL);    
+    g_object_unref(node);
+  }
+  g_object_unref(list);
+  webkit_dom_node_append_child(WEBKIT_DOM_NODE(body), header, NULL);
+ 
+  document = webkit_web_view_get_dom_document(WEBKIT_WEB_VIEW (footer_web_view));
+  body = webkit_dom_document_get_body(document); 
+  list = webkit_dom_node_get_child_nodes(WEBKIT_DOM_NODE(body));
+  while (webkit_dom_node_list_get_length(list) > 0) {
+    node = webkit_dom_node_list_item(list, 0);
+    webkit_dom_node_remove_child(WEBKIT_DOM_NODE(body), node, NULL);    
+    g_object_unref(node);
+  }
+  g_object_unref(list);
+  webkit_dom_node_append_child(WEBKIT_DOM_NODE(body), footer, NULL);
+
+  // get text header
+  /*  if ( header != NULL ) {
+    g_object_get ((WebKitDOMHTMLElement *)header, "outer-html", &text_header, NULL);
+    webkit_web_view_load_string(WEBKIT_WEB_VIEW (header_web_view), text_header, NULL, NULL, NULL);
+    g_main_loop_run(loop);    
+    g_free(text_header);
+  }
+
+  // get text footer
+  if ( footer != NULL ) {
+    g_object_get ((WebKitDOMHTMLElement *)footer, "outer-html", &text_footer, NULL);
+    webkit_web_view_load_string(WEBKIT_WEB_VIEW (footer_web_view), text_footer, NULL, NULL, NULL);
+    g_main_loop_run(loop);    
+    g_free(text_footer);
+    }*/
+
+  g_main_loop_unref(loop);
+
+  frame_content = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (content_web_view));
+  frame_header = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (header_web_view));
+  frame_footer = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (footer_web_view));
+
   operation = gtk_print_operation_new ();
   gtk_print_operation_set_embed_page_setup (operation, TRUE);
   page_setup = gtk_page_setup_new();
   gtk_print_operation_set_default_page_setup (operation, page_setup);
 
-  webkit_web_frame_print_full (main_frame, operation, 
-                               GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG, &error);
+  webkit_web_frame_libre_impuesto_print_full (frame_header, 
+                                              frame_content, 
+                                              frame_footer,
+                                              operation, 
+                                              GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG, 
+                                              &error);
 
   if (error) {
     g_error_free (error);
@@ -129,6 +266,9 @@ on_button_print_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
 
   g_object_unref (page_setup);
   g_object_unref (operation);
+  g_object_unref (footer_web_view);
+  g_object_unref (header_web_view);
+  g_object_unref (content_web_view);
 }
 
 static void
