@@ -133,7 +133,7 @@ on_button_print_clicked (GtkWidget *widget, LibreImpuestoEmbed *embed)
   const GString *data;
   GMainLoop* loop;
   //gchar* text_header, * text_footer;
-  gchar *baseURL;
+  const gchar *baseURL;
 
 
   // Clone Document
@@ -583,27 +583,27 @@ libre_impuesto_embed_constructed (GObject *object)
   hbbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
   gtk_button_box_set_layout (GTK_BUTTON_BOX(hbbox), GTK_BUTTONBOX_CENTER);
   button = gtk_button_new_with_label(_("Abrir"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON));
   g_signal_connect (button, "clicked", G_CALLBACK (on_button_open_clicked), 
                     embed);
   gtk_container_add (GTK_CONTAINER (hbbox), button);
   button = gtk_button_new_with_label(_("Guardar"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_SAVE, GTK_ICON_SIZE_BUTTON));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock(GTK_STOCK_SAVE, GTK_ICON_SIZE_BUTTON));
   g_signal_connect (button, "clicked", G_CALLBACK (on_button_save_clicked), 
                     embed);
   gtk_container_add (GTK_CONTAINER (hbbox), button);
   button = gtk_button_new_with_label(_("Imprimir"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_PRINT, GTK_ICON_SIZE_BUTTON));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock(GTK_STOCK_PRINT, GTK_ICON_SIZE_BUTTON));
   g_signal_connect (button, "clicked", G_CALLBACK (on_button_print_clicked), 
                     embed);
   gtk_container_add (GTK_CONTAINER (hbbox), button);
   button = gtk_button_new_with_label(_("Exportar"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_DND_MULTIPLE, GTK_ICON_SIZE_BUTTON));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock(GTK_STOCK_DND_MULTIPLE, GTK_ICON_SIZE_BUTTON));
   g_signal_connect (button, "clicked", G_CALLBACK (on_button_export_clicked), 
                     embed);
   gtk_container_add (GTK_CONTAINER (hbbox), button);
   button = gtk_button_new_with_label(_("Verificar"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_icon_name(GTK_STOCK_APPLY, GTK_ICON_SIZE_BUTTON));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock(GTK_STOCK_APPLY, GTK_ICON_SIZE_BUTTON));
   g_signal_connect (button, "clicked", G_CALLBACK (on_button_verify_clicked), 
                     embed);
   gtk_container_add (GTK_CONTAINER (hbbox), button);

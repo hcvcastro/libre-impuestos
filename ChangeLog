@@ -1,3 +1,15 @@
-version 0.0.2  Added webkit engine to render html forms
+revision 0.0.5
+	Fixed. button images, do not shown when gtk setting disabled.
+
+revision 0.0.4 
+	Added Formulario Dependiente - Independientes 110.
+
+revision 0.0.3 
+	Added customized library libre-impuestos-webkitgtk-3.0 patched and
+	extended to print page header and footer to html document.
+
+revision 0.0.2  
+	Added webkit engine to render html forms
+
 
 First Initial Project, released December 2013, version 0.0.1 by Henry Castro <hcvcastro@gmail.com>

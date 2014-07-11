@@ -1,0 +1,409 @@
+<html>
+<head>
+<title>prueba</title>
+<style>
+/*p {
+page-break-after: always;
+}
+h1 {
+page-break-before: always;
+}
+table {
+border-collapse:collapse;
+}
+td {
+border:1px solid black;
+}
+p {
+border:1px solid black;
+margin: 0px;
+}*/
+
+#grid-section{
+ width: 600px;
+ margin-top: 15px;
+ margin-left: auto;
+ margin-right: auto;
+/* border: 1px solid black;
+ border-radius: 5px;*/
+}
+
+#grid-section table{
+	/*table-layout: fixed;*/
+	font: 12px/1.2 'Open Sans',sans-serif;
+}
+#grid-section table th{
+	border: 1px solid gray;
+	color: #0000c0;	
+	background-color: #ceddfc;
+}
+#grid-section table td{
+	border: 1px solid black;
+}
+
+.column-Nro{
+	width: 40px;
+}
+
+.column-NIT{
+	width: 50px;
+}
+.column-fecha{
+	width: 50px;
+}
+
+#grid-title{
+	color: white;
+	background-color: #191970
+}
+
+#cell-input{
+	border: none;
+	width: 99%;
+}
+
+
+</style>
+</head>
+<body>
+<header>header</header>
+<p>
+Esto es una prueba
+</p>
+<p>
+Segunda pagina
+</p>
+  <section id="grid-section">
+    <table width=100%>
+      <caption id="grid-title">RUBRO 1 - DETALLE DE NOTAS FISCALES QUE ACOMPAÑAN</caption>
+      <thead>
+	<tr>
+	  <th>Nro.</th>
+	  <th>NIT</th>
+	  <th>Nro. de Factura</th>
+	  <th>Nro. Autoriz/Orden</th>
+	</tr>
+      </thead>
+      <tbody>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	<tr>
+	  <td><div class="column-Nro"><input id="cell-input" type='text'/></div></td>		
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	  <td><div class="column-NIT"><input id="cell-input" type='text'/></div></td>
+	</tr>
+	
+      </tbody>
+    </table>
+    </section>
+<h1>
+Esto esta en la siguiente pagina.
+</h1>
+<footer>footer</footer>
+</body>
+</html>

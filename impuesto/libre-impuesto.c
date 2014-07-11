@@ -699,12 +699,21 @@ impuesto_initable_init (GInitable *initable,
 			GCancellable *cancellable,
 			GError **error)
 {
-  gchar *filename;
-  GdkScreen *screen;
+  gchar* filename;
+  GdkScreen* screen;
+  GValue bTrue = G_VALUE_INIT;
+  GtkSettings* settings;
+  GtkSettingsValue value;
   gboolean ret_val = FALSE;
   GtkIconTheme *icon_theme;
   GApplication *application = G_APPLICATION (initable);
   LibreImpuestoPrivate *priv = LIBRE_IMPUESTO(initable)->priv;
+
+  g_value_init(&bTrue, G_TYPE_LONG);
+  g_value_set_long(&bTrue, 1);
+  value.value = bTrue;
+  settings = gtk_settings_get_default();
+  gtk_settings_set_property_value(settings, "gtk-button-images", &value);
 
   // Append icon search path
   icon_theme = gtk_icon_theme_get_default ();
